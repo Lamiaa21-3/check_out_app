@@ -6,8 +6,18 @@ class ThinkYouBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Container(
+            decoration: BoxDecoration(
+            color: Color(0xffD9D9D9),
+            borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
