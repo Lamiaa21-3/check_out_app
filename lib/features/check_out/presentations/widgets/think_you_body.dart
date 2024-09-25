@@ -8,6 +8,7 @@ class ThinkYouBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(30.0),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           Container(
             decoration: BoxDecoration(
@@ -16,20 +17,32 @@ class ThinkYouBody extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: MediaQuery.of(context).size.height*.2,
+            bottom: MediaQuery.of(context).size.height * .2,
             left: -20,
             child: const CircleAvatar(
               backgroundColor: Colors.white,
             ),
-
           ),
-    Positioned(
-    bottom: MediaQuery.of(context).size.height*.2,
-    right: -20,
-    child: const CircleAvatar(
-    backgroundColor: Colors.white,
-    ),
-    ),
+          Positioned(
+
+            bottom: MediaQuery.of(context).size.height * .2,
+            right: -20,
+            child: const CircleAvatar(
+              backgroundColor: Colors.white,
+            ),
+          ),
+          const Positioned(
+            top: -50,
+              left: 0,
+              right: 0,
+              child: CircleAvatar(
+            radius: 50,
+            backgroundColor: Color(0xffD9D9D9),
+            child: CircleAvatar(
+              radius: 40,
+              backgroundColor: Colors.green,
+            ),
+          ))
         ],
       ),
     );
