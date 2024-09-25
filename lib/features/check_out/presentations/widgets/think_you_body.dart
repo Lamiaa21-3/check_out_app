@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ThinkYouBody extends StatelessWidget {
@@ -6,18 +5,33 @@ class ThinkYouBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Container(
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Stack(
+        children: [
+          Container(
             decoration: BoxDecoration(
-            color: Color(0xffD9D9D9),
-            borderRadius: BorderRadius.circular(20),
+              color: const Color(0xffD9D9D9),
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            bottom: MediaQuery.of(context).size.height*.2,
+            left: -20,
+            child: const CircleAvatar(
+              backgroundColor: Colors.white,
+            ),
+
+          ),
+    Positioned(
+    bottom: MediaQuery.of(context).size.height*.2,
+    right: -20,
+    child: const CircleAvatar(
+    backgroundColor: Colors.white,
+    ),
+    ),
+        ],
+      ),
     );
   }
 }
