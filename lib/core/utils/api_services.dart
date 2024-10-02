@@ -3,13 +3,13 @@ import 'package:dio/dio.dart';
 class ApiServices {
   final Dio dio = Dio();
 
-  Future<Response> post(
+  Future<Response> post (
       {required body,
       required String url,
       required String token,
-      required String? contentType}) {
-    final response=  dio.post(url,data: body,options:Options (
-    contentType : contentType,
+       String? contentType}) async {
+    final response=  await  dio.post(url,data: body,options:Options (
+    contentType : Headers.formUrlEncodedContentType,
       headers: {
          'Authorization': 'Bearer$token'
       }
