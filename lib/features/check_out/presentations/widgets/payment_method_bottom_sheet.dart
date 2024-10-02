@@ -3,6 +3,7 @@ import 'package:check_out_app/features/check_out/presentations/widgets/payment_l
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_button.dart';
+import 'custom_button_bloc_consumer.dart';
 
 class PaymentMethodsBottomSheet extends StatefulWidget {
   const PaymentMethodsBottomSheet({super.key});
@@ -41,9 +42,7 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
           const SizedBox(
             height: 32,
           ),
-          CustomButton(text: 'Continues',
-
-          ),
+          CustomButtonBlocConsumer(),
         ],
       ),
     );
