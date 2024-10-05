@@ -14,9 +14,16 @@ class CheckOutRepoImpl extends CheckOutRepo {
       await stripeServices.makePayment(
           paymentIntentInputModel: paymentIntentInputModel);
       return right(null);
-    }
-    catch(e){
-      return left(ServerFailure(errorMessage: e.toString()));
+    } catch (e) {
+      print('eeeeeeeeeeerepoimpl$e');
+
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+
+      );
+
     }
   }
 }
