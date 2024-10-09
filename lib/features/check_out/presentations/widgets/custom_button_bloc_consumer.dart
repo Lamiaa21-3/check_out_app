@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:check_out_app/features/check_out/data/models/amount_model/amount_model.dart';
+import 'package:check_out_app/features/check_out/data/models/amount_model/details.dart';
+import 'package:check_out_app/features/check_out/data/models/item_list_model/item.dart';
+import 'package:check_out_app/features/check_out/data/models/item_list_model/item_list_model.dart';
 import 'package:check_out_app/features/check_out/presentations/manager/payment_cubit.dart';
 import 'package:check_out_app/features/check_out/presentations/manager/payment_states.dart';
 import 'package:check_out_app/features/check_out/presentations/think_you_view.dart';
@@ -8,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 
 import '../../../../core/widgets/custom_button.dart';
-import '../../data/models/payment_intent_input_model.dart';
+
 
 class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({super.key});
@@ -19,56 +23,41 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       builder: (BuildContext context, state) {
         return CustomButton(
           onTap: () {
+            var amount = AmountModel(
+                total: "100",
+                currency: "USD",
+                details: Details(
+                  shipping: "0",
+                  shippingDiscount: 0,
+                  subtotal: "100",
+                ));
+         List<OrderItemModel> orders=[
+           OrderItemModel(
+             currency: "USD",
+             name:"Apple",
+             price: "4",
+             quantity: 10,
+           ),
+           OrderItemModel(
+             currency: "USD",
+             name:"Apple",
+             price: "5",
+             quantity: 12,
+           ),
 
+         ];
+         var itemList=ItemListModel(orders: orders);
             Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PaypalCheckoutView(
                 sandboxMode: true,
                 clientId: "YOUR CLIENT ID",
                 secretKey: "YOUR SECRET KEY",
-                transactions: const [
+                transactions:  [
                   {
-                    "amount": {
-                      "total": '100',
-                      "currency": "USD",
-                      "details": {
-                        "subtotal": '100',
-                        "shipping": '0',
-                        "shipping_discount": 0
-                      }
-                    },
+                    "amount": amount.toJson(),
                     "description": "The payment transaction description.",
-                    // "payment_options": {
-                    //   "allowed_payment_method":
-                    //       "INSTANT_FUNDING_SOURCE"
-                    // },
-                    "item_list": {
-                      "items": [
-                        {
-                          "name": "Apple",
-                          "quantity": 4,
-                          "price": '10',
-                          "currency": "USD"
-                        },
-                        {
-                          "name": "Pineapple",
-                          "quantity": 5,
-                          "price": '12',
-                          "currency": "USD"
-                        }
-                      ],
 
-                      // Optional
-                      //   "shipping_address": {
-                      //     "recipient_name": "Tharwat samy",
-                      //     "line1": "tharwat",
-                      //     "line2": "",
-                      //     "city": "tharwat",
-                      //     "country_code": "EG",
-                      //     "postal_code": "25025",
-                      //     "phone": "+00000000",
-                      //     "state": "ALex"
-                      //  },
-                    }
+                    "item_list":itemList.toJson(),
                   }
                 ],
                 note: "Contact us for any questions on your order.",
@@ -86,15 +75,15 @@ class CustomButtonBlocConsumer extends StatelessWidget {
                 },
               ),
             ));
-          //   PaymentIntentInputModel paymentIntentInputModel =
-          //       PaymentIntentInputModel(
-          //     amount: '100',
-          //     currency: 'usd',
-          //     customerId: 'cus_Qza8RUJaKVHwCH',
-          //   );
-          //   BlocProvider.of<PaymentCubit>(context)
-          //       .makePayment(paymentIntentInputModel: paymentIntentInputModel);
-           },
+            //   PaymentIntentInputModel paymentIntentInputModel =
+            //       PaymentIntentInputModel(
+            //     amount: '100',
+            //     currency: 'usd',
+            //     customerId: 'cus_Qza8RUJaKVHwCH',
+            //   );
+            //   BlocProvider.of<PaymentCubit>(context)
+            //       .makePayment(paymentIntentInputModel: paymentIntentInputModel);
+          },
           text: 'Continues',
           isLoading: state is PaymentLoading ? true : false,
         );
