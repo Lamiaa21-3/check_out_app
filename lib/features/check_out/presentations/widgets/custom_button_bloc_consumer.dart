@@ -50,8 +50,8 @@ class CustomButtonBlocConsumer extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PaypalCheckoutView(
                 sandboxMode: true,
-                clientId: "YOUR CLIENT ID",
-                secretKey: "YOUR SECRET KEY",
+                clientId: "Aah2kESb5TaOo6yHIGcPcCIsMUE4VUtIA1FQ9z-ky8mYqxkOuz9qW48Virx-_hLHT3zHuRb7U9cjVuz9",
+                secretKey: "EFko5NA1iGcypF8ZYblriTPkwJchYhADJByXMB4TJqaHVuw73EFqRBrdq5ZfXA1a9t2zblB6Nby3jKu2",
                 transactions:  [
                   {
                     "amount": amount.toJson(),
@@ -75,14 +75,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
                 },
               ),
             ));
-            //   PaymentIntentInputModel paymentIntentInputModel =
-            //       PaymentIntentInputModel(
-            //     amount: '100',
-            //     currency: 'usd',
-            //     customerId: 'cus_Qza8RUJaKVHwCH',
-            //   );
-            //   BlocProvider.of<PaymentCubit>(context)
-            //       .makePayment(paymentIntentInputModel: paymentIntentInputModel);
+
           },
           text: 'Continues',
           isLoading: state is PaymentLoading ? true : false,
